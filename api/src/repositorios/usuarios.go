@@ -194,12 +194,12 @@ func (repoUsuarios Usuarios) PararDeSeguirUsuario(usuarioID uint64, seguidorID u
 func (repoUsuarios Usuarios) BuscarSeguidores(usuarioID uint64) ([]modelos.Usuario, error) {
 
 	linhas, erro := repoUsuarios.db.Query(`
-		SELECT u.ID, u.nome, u.nick, u.email , u.criadoEm FROM usuarios u
-		JOIN
-			seguidores s
-			on u.ID = s.seguidor_id
-		WHERE
-			s.usuario_id = ?
+SELECT u.ID, u.nome, u.nick, u.email , u.criadoEm FROM usuarios u
+JOIN
+seguidores s
+on u.ID = s.seguidor_id
+WHERE
+s.usuario_id = ?
 		`, usuarioID,
 	)
 	if erro != nil {
@@ -225,12 +225,12 @@ func (repoUsuarios Usuarios) BuscarSeguidores(usuarioID uint64) ([]modelos.Usuar
 func (repoUsuarios Usuarios) BuscarSeguindo(usuarioID uint64) ([]modelos.Usuario, error) {
 
 	linhas, erro := repoUsuarios.db.Query(`
-		SELECT u.ID, u.nome, u.nick, u.email , u.criadoEm FROM usuarios u
-		JOIN
-			seguidores s
-			on u.ID = s.seguidor_id
-		WHERE
-			s.seguidor_id = ?
+SELECT u.ID, u.nome, u.nick, u.email , u.criadoEm FROM usuarios u
+JOIN
+seguidores s
+on u.ID = s.usuario_id
+WHERE
+s.seguidor_id = ?
 		`, usuarioID,
 	)
 	if erro != nil {

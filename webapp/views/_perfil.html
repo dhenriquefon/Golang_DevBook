@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBook - Meu Perfil</title>
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+    {{ template "cabecalhos" }}
+
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Meu Perfil
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> 
+                            {{ .Usuario.Nome }} - {{ .Usuario.Nick }} - Membro Desde: {{ .Usuario.CriadoEm.Format "02/01/2006" }}
+
+                        </h6>
+
+                        <p class="card-text">
+                            <!-- modal eh uma telinha do bootstrap -->
+                            <a href="#" data-toggle="modal" data-target="#modal-seguidores">
+                                Seguidores: {{ len .Seguidores }}
+                            </a>
+                        </p>
+    
+                        <p class="card-text">
+                            <!-- modal eh uma telinha do bootstrap -->
+                            <a href="#" data-toggle="modal" data-target="#modal-seguindo">
+                                Seguindo: {{ len .Seguidores }}
+                            </a>
+                        </p>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <a hred="/editar-usuario" class="card-link">
+                                    <button class="btn btn-info">Editar dados</button>
+                                </a>
+                                <a hred="/atualizar-senha" class="card-link">
+                                    <button class="btn btn-info">Atualizar Senha</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{ template "modal-seguidores" .Usuario }}
+    {{ template "modal-seguindo" .Usuario }}
+    {{ template "rodape" }}
+    {{ template "scripts" }}
+</body>
+
+</html>

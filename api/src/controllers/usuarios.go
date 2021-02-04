@@ -282,6 +282,7 @@ func PararDeSeguirUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(seguidorID, usuarioID)
 	if seguidorID == usuarioID {
 		respostas.Erro(w, http.StatusForbidden, errors.New("Nao eh possivel parar de seguir voce mesmo"))
 		return

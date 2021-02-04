@@ -43,8 +43,9 @@ func (repoPublicacao Publicacoes) Criar(publicacao modelos.Publicacao) (uint64, 
 func (repoPublicacao Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, error) {
 	linhas, erro := repoPublicacao.db.Query(`
 SELECT DISTINCT p.*, u.nick FROM publicacoes p
-JOIN usuarios u ON u.id = p.autor_id JOIN seguidores s
-ON p.autor_id = s.usuario_id WHERE u.id = ? OR s.seguidor_id = ? ORDER BY 1 desc
+INNER JOIN usuarios u ON u.id = p.autor_id 
+INNER JOIN seguidores s ON p.autor_id = s.seguidor_id  OR p.autor_id = s.usuario_id
+WHERE u.id = ? OR s.seguidor_id = ? ORDER BY 1 desc
 		`, usuarioID, usuarioID,
 	)
 

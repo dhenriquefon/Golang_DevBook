@@ -11,20 +11,19 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 //Login faz a funcao de autenticar o usuario para realizar login
 func Login(w http.ResponseWriter, r *http.Request) {
 	// lendo todo o corpo da requisicao para obter email e sneha
 
-	fmt.Println("login")
 	corpoDaRequisicao, erro := ioutil.ReadAll(r.Body)
 	if erro != nil {
 		respostas.Erro(w, http.StatusUnprocessableEntity, erro)
 		return
 	}
 
-	fmt.Println("login 2")
 	// transformar o corpo da requisicao que eh um json em um usuario usando UNMARSHAL
 	var usuario modelos.Usuario
 	if erro = json.Unmarshal([]byte(corpoDaRequisicao), &usuario); erro != nil {
@@ -60,6 +59,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if erro != nil {
 		respostas.Erro(w, http.StatusInternalServerError, erro)
 	}
-	fmt.Println(token)
-	w.Write([]byte(token))
+
+	usuarioID := strconv.FormatUint(usuarioSalvoNoBanco.ID, 10)
+	respostas.JSON(w, http.StatusOK, modelos.DadosAutenticacao{ID: usuarioID, Token: token})
 }

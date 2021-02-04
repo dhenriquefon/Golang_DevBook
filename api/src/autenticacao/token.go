@@ -35,12 +35,15 @@ func CriarToken(usuarioID uint64) (string, error) {
 // ValidarToken se o token passado na requisicao eh valido
 func ValidarToken(r *http.Request) error {
 	tokenString := extrairToken(r)
+	fmt.Println(tokenString)
 	token, erro := jwt.Parse(tokenString, retornarChaveVerificacao)
 	if erro != nil {
+		fmt.Println("token invalido")
 		return erro
 	}
 
 	if _, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		fmt.Println("token invalido")
 		return nil
 	}
 

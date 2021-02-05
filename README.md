@@ -42,7 +42,7 @@ GRANT ALL PRIVILEGES ON devbook.* TO 'golang'@'localhost';
 
 Executar script:
 
-``bash
+```bash
 -- criacao de tabelas
 /sql/sql.sql
 
@@ -52,7 +52,7 @@ Executar script:
 
 ### Golang DevBook - SETUP
 
-``bash
+```bash
 go get github.com/gorilla/mux
 go get github.com/badoux/checkmail
 go get github.com/go-sql-driver/mysql
@@ -62,7 +62,7 @@ go get github.com/dgrijalva/jwt-go
 go get github.com/gorilla/securecookie
 ```
 
-``bash
+```bash
 -- build api
 cd /api/
 go build

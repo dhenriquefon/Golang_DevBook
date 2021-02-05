@@ -53,6 +53,16 @@ Executar script:
 ### Golang DevBook - SETUP
 
 ``bash
+go get github.com/gorilla/mux
+go get github.com/badoux/checkmail
+go get github.com/go-sql-driver/mysql
+go get github.com/joho/godotenv
+go get golang.org/x/crypto/bcrypt
+go get github.com/dgrijalva/jwt-go
+go get github.com/gorilla/securecookie
+```
+
+``bash
 -- build api
 cd /api/
 go build

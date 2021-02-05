@@ -71,7 +71,7 @@ cd /webapp/
 ```
 
 
-## Testando a Aplicação
+## Usando a Aplicação
 
 Realizar login em:
 
